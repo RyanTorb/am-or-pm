@@ -1,14 +1,11 @@
 var HTTPS = require('https');
 var cool = require('cool-ascii-faces');
-var today = new Date();
-var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 var botID = process.env.BOT_ID;
-var date1;
 var author;
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]),
-      gameRegex = /.*\s(g|G)(a|A)(m|M)(e|E).*/;
+      ampmRegex = /\d+(\s|\S)((pm|PM)|(am|AM))/;
 
   if(request.text && gameRegex.test(request.text)) {
     this.res.writeHead(200);
@@ -24,28 +21,7 @@ function respond() {
 
 function postMessage() {
   var botResponse, options, body, botReq;
-  var nextGame = new Date();
-  nextGame.setMonth(1);
-  var firstGame = new Date();
-  firstGame.setMonth(1);
-  firstGame.setDate(9);
-  var secondGame = new Date();
-  secondGame.setMonth(1);
-  secondGame.setDate(16);
-  var thirdGame = new Date();
-  thirdGame.setMonth(1);
-  thirdGame.setDate(23);
-  if(today.getMonth() < nextGame.getMonth() || (today.getMonth()==nextGame.getMonth() && today.getDate() < firstGame.getDate())){
-    nextGame.setDate(firstGame.getDate());}
-  else if(today.getMonth() < nextGame.getMonth() || (today.getMonth()==nextGame.getMonth() && today.getDate() < secondGame.getDate())){
-    nextGame.setDate(secondGame.getDate());}
-  else if(today.getMonth() < nextGame.getMonth() || (today.getMonth()==nextGame.getMonth() && today.getDate() < thirdGame.getDate())){
-    nextGame.setDate(thirdGame.getDate());}
-  if(today.getMonth() < nextGame.getMonth() || (today.getMonth()==nextGame.getMonth() && today.getDate() < thirdGame.getDate())){
-    date1 = "Great question " + author + "! Our next contest is on " + (nextGame.getMonth()+1)+'-'+nextGame.getDate()+'-'+today.getFullYear() + "! Wishing y'all lot's of luck!";}
-  else{
-    date1 = "Unfortunately, there is no next contest! I'll see y'all next season! (Unless we are in playoffs and Ryan didn't update my code, in which case blame him and not me)";}
-  botResponse = date1;
+  botResponse = "AM or PM?;
 
   options = {
     hostname: 'api.groupme.com',
