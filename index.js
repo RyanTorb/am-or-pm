@@ -29,5 +29,5 @@ server.listen(port);
 
 function ping() {
   this.res.writeHead(200);
-  this.res.end("Hey, I'm the game reminder bot. Look at me go!");
+  this.res.end("Hey, I'm the am or pm bot. Look at me go!");
 }
