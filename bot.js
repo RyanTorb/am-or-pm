@@ -5,7 +5,7 @@ var author;
 
 function respond() {
   var request = JSON.parse(this.req.chunks[0]),
-      ampmRegex = /\d+(\s|\S)((pm|PM)|(am|AM))/,
+      ampmRegex = /\d+\s?((pm|PM)|(am|AM))/,
       numRegex = /.*\d.*/;
 
   if(request.text && numRegex.test(request.text) && !ampmRegex.test(request.text)) {
