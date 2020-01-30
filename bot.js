@@ -8,7 +8,7 @@ function respond() {
       ampmRegex = /\d+(\s|\S)((pm|PM)|(am|AM))/,
       numRegex = /.*\d.*/;
 
-  if(request.text && numRegex.test(request.text) && !ampmRegex(request.text)) {
+  if(request.text && numRegex.test(request.text) && !ampmRegex.test(request.text)) {
     this.res.writeHead(200);
     author = request.name;
     postMessage();
